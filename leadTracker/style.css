@@ -26,3 +26,19 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
+
+/* STYLE THE LIST ACCORDING TO THE DESIGN */
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 20px;
+}
+
+li {
+  padding-block: 0.3rem;
+  margin-top: 5px;
+}
+
+li a {
+  color: #5f9341;
+}
