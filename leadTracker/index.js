@@ -5,8 +5,6 @@ const inputBtn = document.getElementById('input-btn');
 const deleteBtn = document.querySelector('#delete-btn');
 const tabBtn = document.querySelector('#tab-btn');
 
-const tabs = [{ url: 'https://www.linkedin.com/in/per-harald-borgen/' }];
-
 tabBtn.addEventListener('click', function () {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     myLeads.push(tabs[0].url);
