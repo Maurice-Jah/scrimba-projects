@@ -1,9 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js';
 import { getDatabase } from 'https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js';
 
-const firebaseConfig = {
-  databaseURL: 'https://lead-tracker-app-20447-default-rtdb.firebaseio.com/',
-};
+import { firebaseConfig } from './config.js';
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
