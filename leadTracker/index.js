@@ -1,10 +1,15 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js';
-import { getDatabase } from 'https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js';
+import {
+  getDatabase,
+  ref,
+  push,
+} from 'https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js';
 
 import { firebaseConfig } from './config.js';
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const referenceInDb = ref(database, 'leads');
 
 const inputEl = document.getElementById('input-el');
 const ulEl = document.getElementById('ul-el');
@@ -23,6 +28,6 @@ function render(leads) {
 deleteBtn.addEventListener('dblclick', function () {});
 
 inputBtn.addEventListener('click', function () {
-  console.log(inputEl.value);
+  push(referenceInDb, inputEl.value);
   inputEl.value = '';
 });
