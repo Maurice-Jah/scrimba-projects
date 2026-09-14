@@ -28,7 +28,9 @@ function render(leads) {
 
 // Fetch the leads from the database
 onValue(referenceInDb, function (snapshot) {
-  console.log(snapshot.val());
+  const snapshotValues = snapshot.val();
+  const leads = Object.values(snapshotValues);
+  render(leads);
 });
 
 deleteBtn.addEventListener('dblclick', function () {});
