@@ -6,22 +6,10 @@ import { firebaseConfig } from './config.js';
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-console.log(database);
-
-let myLeads = [];
 const inputEl = document.getElementById('input-el');
 const ulEl = document.getElementById('ul-el');
 const inputBtn = document.getElementById('input-btn');
 const deleteBtn = document.querySelector('#delete-btn');
-const tabBtn = document.querySelector('#tab-btn');
-
-tabBtn.addEventListener('click', function () {
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    myLeads.push(tabs[0].url);
-    localStorage.setItem('myLeads', JSON.stringify(myLeads));
-    render(myLeads);
-  });
-});
 
 // Display the Leads
 function render(leads) {
@@ -32,27 +20,9 @@ function render(leads) {
   ulEl.innerHTML = listItems;
 }
 
-// Read from localStorage
-
-const leadsFromLocalStorage = JSON.parse(localStorage.getItem('myLeads'));
-
-if (leadsFromLocalStorage) {
-  myLeads = leadsFromLocalStorage;
-  render(myLeads);
-}
-
-// Clear the localStorage and DOM
-deleteBtn.addEventListener('dblclick', function () {
-  localStorage.clear();
-  myLeads = [];
-  render(myLeads);
-});
+deleteBtn.addEventListener('dblclick', function () {});
 
 inputBtn.addEventListener('click', function () {
-  myLeads.push(inputEl.value);
+  console.log(inputEl.value);
   inputEl.value = '';
-
-  localStorage.setItem('myLeads', JSON.stringify(myLeads));
-
-  render(myLeads);
 });
