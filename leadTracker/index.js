@@ -3,6 +3,7 @@ import {
   getDatabase,
   ref,
   push,
+  remove,
   onValue,
 } from 'https://www.gstatic.com/firebasejs/12.18.0/firebase-database.js';
 
@@ -28,12 +29,20 @@ function render(leads) {
 
 // Fetch the leads from the database
 onValue(referenceInDb, function (snapshot) {
-  const snapshotValues = snapshot.val();
-  const leads = Object.values(snapshotValues);
-  render(leads);
+  const snapshotDoesExist = snapshot.exists();
+
+  if (snapshotDoesExist) {
+    const snapshotValues = snapshot.val();
+    const leads = Object.values(snapshotValues);
+    render(leads);
+  }
 });
 
-deleteBtn.addEventListener('dblclick', function () {});
+// Delete all the leads from the database
+deleteBtn.addEventListener('dblclick', function () {
+  remove(referenceInDb);
+  ulEl.innerHTML = '';
+});
 
 inputBtn.addEventListener('click', function () {
   push(referenceInDb, inputEl.value);
